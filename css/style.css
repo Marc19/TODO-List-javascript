@@ -6,11 +6,26 @@ body{
 }
 
 #startDiv{
+    width: 100%;
     margin-top: 1rem;
     margin-bottom: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+}
+
+#statsDiv{
+    padding: 2rem 4rem;
+    display: flex;
+    flex-direction: column;
+    background-color: #EEE2D7;
+    border: 1px solid #EDC7B7;
+    justify-self: flex-end;
+}
+
+#statsDiv h1{
+    margin-bottom: 1rem;
 }
 
 #userInputDiv{
@@ -33,6 +48,10 @@ body{
     border: 1px solid #EDC7B7;
 }
 
+#tasksUL .taskLI:hover{
+    cursor: grab;
+}
+
 #tasksUL .taskLI em{
     margin-left: 1rem;
     color: #AC3B61;
@@ -52,4 +71,8 @@ body{
     margin-left: auto;
     display: flex;
     flex-wrap: nowrap;
+}
+
+.doneBtn{
+    margin-right: 1rem;
 }

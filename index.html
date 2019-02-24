@@ -16,7 +16,9 @@
 <div class="container wrapper"> 
 
     <div id="startDiv">
-        <h1>TODO LIST</h1>
+        <div id="statsDiv">
+        </div>
+
         <div id="userInputDiv" class="w-100">
             <input type="text" id="inputTextBox" class="w-100 mr-1" placeholder="Enter your text here">
             <button type="button" id="addBtn" class="btn btn-secondary px-5">Add</button>
@@ -24,24 +26,31 @@
     </div>
 
     <div id="tasksDiv">
+        <ul id="tasksUL" class="">
+        </ul>
     </div>
 
+    <script id="statsTemplate" type="x-tmpl-mustache">
+        <h1>TODO List</h1>
+        <h5>All tasks: {{allTasksCount}}</h5>
+        <h5>Tasks starred: {{starredTasksCount}}</h5>
+        <h5>Tasks Completed: {{completedTasksCount}}</h5>
+    </script>
+
     <script id="tasksTemplate" type="x-tmpl-mustache">
-        <ul id="tasksUL" class="w-100">
-            {{#tasks}}
-            <li class="p-3 w-100 taskLI {{#isDone}}doneItem{{/isDone}}">
-                <span>{{text}}</span>
-                <em>{{dateFinished}}</em>
-                <input type="text" class="editListItemTextBox">
-                <div id="actionsDiv">
-                    <button type="button" id="editBtn" class="btn btn-outline-info"><i class="fas fa-edit"></i></button>
-                    <button type="button" id="starBtn" class="btn btn-outline-warning"><i class="fas fa-star"></i></button>
-                    <button type="button" id="doneBtn" class={{#isDone}}"btn btn-success"{{/isDone}}{{^isDone}}"btn btn-outline-success"{{/isDone}}><i class="fas fa-check"></i></button>
-                    <button type="button" id="removeBtn" class="btn btn-outline-danger"><i class="fas fa-trash-alt"></i></button>
-                </div>
-            </li>
-            {{/tasks}}
-        </ul>
+        {{#tasks}}
+        <li class="p-3 taskLI {{#isDone}}doneItem{{/isDone}}">
+            <span>{{text}}</span>
+            <em>{{dateFinished}}</em>
+            <input type="text" class="editListItemTextBox">
+            <div id="actionsDiv">
+                <button type="button" class="starBtn {{#isStarred}}btn btn-warning{{/isStarred}}{{^isStarred}}btn btn-outline-warning{{/isStarred}}"><i class="fas fa-star"></i></button>
+                <button type="button" class="doneBtn {{#isDone}}btn btn-success{{/isDone}}{{^isDone}}btn btn-outline-success{{/isDone}}"><i class="fas fa-check"></i></button>
+                <button type="button" class="editBtn btn btn-outline-info"><i class="fas fa-edit"></i></button>
+                <button type="button" class="removeBtn btn btn-outline-danger"><i class="fas fa-trash-alt"></i></button>
+            </div>
+        </li>
+        {{/tasks}}
     </script>
 
 </div>
@@ -52,5 +61,5 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.1.3/mustache.js"></script>
 <script src="js/pubSub.js"></script>
 <script src="js/tasksContainerModule.js"></script>
-<script src="js/taskModule.js"></script>
+<script src="js/statsModule.js"></script>
 </html>
