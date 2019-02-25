@@ -117,13 +117,13 @@ var tasksContainer = (function(){
         }
         else{
             var currentDate = new Date();
-            var date = ("0" + currentDate.getDate()).slice(-2);//format numbers to 2 digits
-            var month = ("0" + currentDate.getMonth()).slice(-2); 
-            var year = ("0" + currentDate.getFullYear()).slice(-2);
-            var hours = ("0" + currentDate.getHours()).slice(-2);
-            var minutes = ("0" + currentDate.getMinutes()).slice(-2);
+            var date = formatNumberToTwoDigits(currentDate.getDate());
+            var month = formatNumberToTwoDigits(currentDate.getMonth()+1);
+            var year = formatNumberToTwoDigits(currentDate.getFullYear());
+            var hours = formatNumberToTwoDigits(currentDate.getHours());
+            var minutes = formatNumberToTwoDigits(currentDate.getMinutes());
             
-            var dateString = "@done(" + date + "-" +(month + 1) + "-" + year + " " + hours + ":" + minutes + ")";
+            var dateString = "@done(" + date + "-" + month + "-" + year + " " + hours + ":" + minutes + ")";
             
             taskToBeSetToDone.isDone = true;
             taskToBeSetToDone.dateFinished = dateString;
@@ -132,6 +132,18 @@ var tasksContainer = (function(){
         saveToLocalStorage();
         pubSub.emit('tasksChanged', taskList.tasks);
         _render();
+    }
+
+    function formatNumberToTwoDigits(number){
+        console.log(number)
+        var numString = number.toString();
+        console.log(numString)
+        if(numString.length >= 2){
+            return numString.substring(numString.length-2,numString.length);
+        }
+        else if(numString.length == 1){
+            return "0"+numString;
+        }
     }
 
     function removeButtonClicked(){
